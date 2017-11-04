@@ -1,4 +1,4 @@
-"Plugins
+" Plugins
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'derekwyatt/vim-scala'
@@ -16,9 +16,14 @@ Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/nerdtree'
 Plug 'guns/vim-sexp'
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
+Plug 'tpope/vim-surround'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'mileszs/ack.vim'
+Plug 'prettier/vim-prettier', {
+      \ 'do': 'yarn install',
+      \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown'] }
+Plug 'leafgarland/typescript-vim'
 
 call plug#end()
 
@@ -29,7 +34,7 @@ set autoindent
 set ignorecase
 set smartcase
 set number
-set cmdheight=2
+set cmdheight=4
 set pastetoggle=<F10>
 set so=5
 set mouse=a
@@ -43,9 +48,9 @@ set shiftwidth=2
 set softtabstop=2
 set tabstop=2
 
-"Theme
+" Theme
 if (has("termguicolors"))
- set termguicolors
+  set termguicolors
 endif
 set background=dark
 color gruvbox
@@ -64,22 +69,23 @@ let g:deoplete#sources={}
 let g:deoplete#sources._=['buffer', 'member', 'tag', 'file', 'omni', 'ultisnips']
 let g:deoplete#omni#input_patterns={}
 let g:deoplete#omni#input_patterns.scala='[^. *\t]\.\w*'
+let g:deoplete#omni#input_patterns.scala = ['[^. *\t]\.\w*', '[:\[,] ?\w*', '^import .*']
 inoremap <expr><tab> pumvisible() ? "<c-n>": "\<tab>"
 
 " Neomake
-" autocmd! BufWritePost * Neomake
+autocmd! BufWritePost * Neomake
 autocmd BufWritePost * StripWhitespace
-" let g:neomake_javascript_eslint_exe = $PWD .'/node_modules/.bin/eslint'
-" let g:neomake_javascript_enabled_makers = ['eslint']
-" let g:neomake_jsx_enabled_makers = ['eslint']
-" let g:neomake_logfile = '/usr/local/var/log/neomake.log'
+let g:neomake_javascript_eslint_exe = $PWD .'/node_modules/.bin/eslint'
+let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_jsx_enabled_makers = ['eslint']
+let g:neomake_logfile = '/usr/local/var/log/neomake.log'
 " let g:neomake_open_list = 0
 
 " vim-jsx
 let g:jsx_ext_required = 0
-let g:javascript_plugin_flow = 1
+" let g:javascript_plugin_flow = 1
 
-"ack / ag
+" ack / ag
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
