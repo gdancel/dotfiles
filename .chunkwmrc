@@ -19,7 +19,6 @@ chunkc core::hotload 1
 #
 
 chunkc set global_desktop_mode           bsp
-chunkc set 3_desktop_mode                float
 
 chunkc set 1_desktop_tree                ~/.chunkwm_layouts/dev_1
 
@@ -102,3 +101,8 @@ chunkc tiling::rule --owner Finder --state float
 chunkc tiling::rule --owner \"App Store\" --state float
 chunkc tiling::rule --owner Spotify --state float
 chunkc tiling::rule --owner Slack --state float
+chunkc tiling::rule --owner Viber --state float
+chunkc tiling::rule --owner Preview --state float
+chunkc tiling::rule --owner GraphiQL --state float
+chunkc tiling::rule --owner Xcode --state float
+chunkc tiling::rule --owner \"qemu-system-x86_64\" --state float
