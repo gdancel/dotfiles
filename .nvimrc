@@ -1,4 +1,4 @@
-" Plugins
+" plugins
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'derekwyatt/vim-scala'
@@ -24,7 +24,7 @@ Plug 'leafgarland/typescript-vim'
 
 call plug#end()
 
-" Preferences
+" preferences
 filetype plugin indent on
 let maplocalleader = "\\"
 set autoindent
@@ -39,13 +39,21 @@ set relativenumber
 set cursorline
 syntax enable
 
-" Indentation
+" clipboard
+set clipboard=unnamed
+set hidden
+set wildmenu
+set showcmd
+set hlsearch
+
+
+" indentation
 set expandtab
 set shiftwidth=2
 set softtabstop=2
 set tabstop=2
 
-" Theme
+" theme
 if (has("termguicolors"))
   set termguicolors
 endif
@@ -53,14 +61,14 @@ set background=dark
 color gruvbox
 let g:gruvbox_contrast_dark="hard"
 
-" Clipboard
-set clipboard=unnamed
-set hidden
-set wildmenu
-set showcmd
-set hlsearch
+" mappings
+nnoremap <C-n> :NERDTreeToggle<CR>
+nnoremap <C-p> :FZF<CR>
 
-" Deoplete
+" formatting
+autocmd BufWritePost * StripWhitespace
+
+" deoplete
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#sources={}
 let g:deoplete#sources._=['buffer', 'member', 'tag', 'file', 'omni', 'ultisnips']
@@ -78,11 +86,7 @@ if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
 
-" Mappings
-nnoremap <C-n> :NERDTreeToggle<CR>
-nnoremap <C-p> :FZF<CR>
-
-" Ensime
+" ensime
 autocmd BufWritePost *.scala silent :EnTypeCheck
 au FileType scala nnoremap <localleader>dv :EnDeclarationSplit v<CR>
 au FileType scala nnoremap <localleader>ds :EnDeclarationSplit<CR>
