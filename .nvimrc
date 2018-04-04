@@ -5,7 +5,7 @@ Plug 'derekwyatt/vim-scala'
 Plug 'derekwyatt/vim-sbt'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'ensime/ensime-vim', { 'do': 'UpdateRemotePlugins' }
-Plug 'neomake/neomake'
+Plug 'w0rp/ale'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'ntpeters/vim-better-whitespace'
@@ -20,9 +20,6 @@ Plug 'tpope/vim-surround'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'mileszs/ack.vim'
-Plug 'prettier/vim-prettier', {
-      \ 'do': 'yarn install',
-      \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown'] }
 Plug 'leafgarland/typescript-vim'
 
 call plug#end()
@@ -71,15 +68,6 @@ let g:deoplete#omni#input_patterns={}
 let g:deoplete#omni#input_patterns.scala='[^. *\t]\.\w*'
 let g:deoplete#omni#input_patterns.scala = ['[^. *\t]\.\w*', '[:\[,] ?\w*', '^import .*']
 inoremap <expr><tab> pumvisible() ? "<c-n>": "\<tab>"
-
-" Neomake
-autocmd! BufWritePost * Neomake
-autocmd BufWritePost * StripWhitespace
-let g:neomake_javascript_eslint_exe = $PWD .'/node_modules/.bin/eslint'
-let g:neomake_javascript_enabled_makers = ['eslint']
-let g:neomake_jsx_enabled_makers = ['eslint']
-let g:neomake_logfile = '/usr/local/var/log/neomake.log'
-" let g:neomake_open_list = 0
 
 " vim-jsx
 let g:jsx_ext_required = 0
