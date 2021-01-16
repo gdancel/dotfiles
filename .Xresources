@@ -1,48 +1,141 @@
-! hard contrast: *background: #1d2021
-*background: #1d2021
-! soft contrast: *background: #32302f
-*foreground: #ebdbb2
-! Black + DarkGrey
-*color0:  #1d2021
-*color8:  #928374
-! DarkRed + Red
-*color1:  #cc241d
-*color9:  #fb4934
-! DarkGreen + Green
-*color2:  #98971a
-*color10: #b8bb26
-! DarkYellow + Yellow
-*color3:  #d79921
-*color11: #fabd2f
-! DarkBlue + Blue
-*color4:  #458588
-*color12: #83a598
-! DarkMagenta + Magenta
-*color5:  #b16286
-*color13: #d3869b
-! DarkCyan + Cyan
-*color6:  #689d6a
-*color14: #8ec07c
-! LightGrey + White
-*color7:  #a89984
-*color15: #ebdbb2
+! .Xresources
+! font {{{
+Xft.dpi: 98
+Xft.autohint: 0
+Xft.lcdfilter: lcddefault
+Xft.hintstyle: 1
+Xft.hinting: 0
+Xft.antialias: 1
+Xft.rgba: rgb
 
-URxvt.font: xft:Inconsolata:pixelsize=15
-URxvt.scrollBar: false
-URxvt.internalBorder: 16
-URxvt.lineSpace: 1
-URxvt.boldFont:
+! end of font }}}
+! urxvt {{{
 
-rofi.color-enabled: true
-rofi.color-window:argb:b5000000,argb:b5000000,0
-rofi.color-normal:argb:00000000,white,argb:00000000,argb:b5ef473a,white
-rofi.color-active:argb:00000000,white,argb:00000000,argb:b5cb2d3e,white
-rofi.color-urgent:argb:00000000,white,argb:00000000,argb:b5870734,white
-rofi.separator-style:none
-rofi.hide-scrollbar:true
-rofi.scroll-method:1
-rofi.font:Overpass Light 14
-rofi.modi:window,run,ssh,combi
-rofi.line-margin:0
-rofi.line-padding:8
-rofi.window-format: {c} {t}
+! urxvt.depth: 32
+! urxvt.fading: 3
+! urxvt.fadeColor: #FFFFFF
+urxvt.scrollBar: false
+urxvt.internalBorder: 16
+urxvt.lineSpace: 2
+urxvt.iso14755: false
+urxvt.font: xft:RobotoMono:pixelsize=14
+urxvt.boldFont:
+urxvt.cursorBlink: true
+
+! keybinds
+urxvt.keysym.Home: \033[1~
+urxvt.keysym.End: \033[4~
+
+! end of urxvt }}}
+! colors {{{
+
+! gruvbox {{{
+! *foreground: #ebdbb2
+! *cursorColor: #ebdbb2
+! ! soft
+! ! *background: #32303f
+! ! medium
+! ! *background: #282828
+! ! hard
+! *background: #1d2021
+! *color0:  #282828
+! *color8:  #928374
+! *color1:  #cc241d
+! *color9:  #fb4934
+! *color2:  #98971a
+! *color10: #b8bb26
+! *color3:  #d79921
+! *color11: #fabd2f
+! *color4:  #458588
+! *color12: #83a598
+! *color5:  #b16286
+! *color13: #d3869b
+! *color6:  #689d6a
+! *color14: #8ec07c
+! *color7:  #a89984
+! *color15: #ebdbb2
+! }}}
+! One Dark {{{
+! ! special
+! *.foreground:   #ABB2BF
+! *.background:   #282C34
+! *.cursorColor:  #ABB2BF
+!
+! ! black
+! *.color0:       #282C34
+! *.color8:       #3E4452
+!
+! ! red
+! *.color1:       #E06C75
+! *.color9:       #BE5046
+!
+! ! green
+! *.color2:       #98C379
+! *.color10:      #98C379
+!
+! ! yellow
+! *.color3:       #E5C07B
+! *.color11:      #D19A66
+!
+! ! blue
+! *.color4:       #61AFEF
+! *.color12:      #61AFEF
+!
+! ! magenta
+! *.color5:       #C678DD
+! *.color13:      #C678DD
+!
+! ! cyan
+! *.color6:       #56B6C2
+! *.color14:      #56B6C2
+!
+! ! white
+! *.color7:       #ABB2BF
+! *.color15:      #5C6370
+! }}}
+! palenight {{{
+#define base00 #292d3e
+#define base01 #444267
+#define base02 #32374d
+#define base03 #676e95
+#define base04 #8796b0
+#define base05 #959dcb
+#define base06 #959dcb
+#define base07 #ffffff
+#define base08 #f07178
+#define base09 #f78c6c
+#define base0A #ffcb6b
+#define base0B #c3e88d
+#define base0C #89ddff
+#define base0D #82aaff
+#define base0E #c792ea
+#define base0F #ff5370
+
+*foreground:   base05
+#ifdef background_opacity
+*background:   [background_opacity]base00
+#else
+*background:   base00
+#endif
+*cursorColor:  base05
+
+*color0:       base00
+*color1:       base08
+*color2:       base0B
+*color3:       base0A
+*color4:       base0D
+*color5:       base0E
+*color6:       base0C
+*color7:       base05
+
+*color8:       base03
+*color9:       base09
+*color10:      base01
+*color11:      base02
+*color12:      base04
+*color13:      base06
+*color14:      base0F
+*color15:      base07
+! }}}
+
+! end of colors }}}

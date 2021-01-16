@@ -1,93 +1,110 @@
-" plugins
+" vim-plug {{{
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'derekwyatt/vim-scala'
-Plug 'derekwyatt/vim-sbt'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'ensime/ensime-vim', { 'do': 'UpdateRemotePlugins' }
-Plug 'w0rp/ale'
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
-Plug 'ntpeters/vim-better-whitespace'
-Plug 'othree/html5.vim'
-Plug 'morhetz/gruvbox'
-Plug 'flazz/vim-colorschemes'
+Plug 'chriskempson/base16-vim'
 Plug 'tpope/vim-fugitive'
-Plug 'scrooloose/nerdtree'
 Plug 'guns/vim-sexp'
-Plug 'tpope/vim-sexp-mappings-for-regular-people'
 Plug 'tpope/vim-surround'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'mileszs/ack.vim'
-Plug 'leafgarland/typescript-vim'
+Plug 'tpope/vim-vinegar'
+Plug 'ntpeters/vim-better-whitespace'
+Plug 'drewtempelmeyer/palenight.vim'
+Plug 'Brettm12345/moonlight.vim'
+
+" Plug 'neoclide/coc.nvim', { 'tag': '*', 'do': { -> coc#util#install() } }
+
+" elixir
+Plug 'elixir-editors/vim-elixir'
+Plug 'JakeBecker/elixir-ls', { 'do': { -> g:elixirls.compile() } }
+Plug 'mhinz/vim-mix-format'
+
+" pug
+Plug 'digitaltoad/vim-pug'
+
+" javascript
+Plug 'pangloss/vim-javascript', {'for': ['javascript', 'javascript.jsx']}
+Plug 'maxmellon/vim-jsx-pretty', {'for': ['javascript', 'javascript.jsx']}
+
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
 
 call plug#end()
-
-" preferences
-filetype plugin indent on
-let maplocalleader = "\\"
-set autoindent
-set ignorecase
-set smartcase
-set number
-set cmdheight=4
-set pastetoggle=<F10>
-set so=5
-set mouse=a
-set relativenumber
-set cursorline
-syntax enable
-
-" clipboard
-set clipboard=unnamed
-set hidden
-set wildmenu
-set showcmd
-set hlsearch
-
-
-" indentation
-set expandtab
+" }}}
+" coc {{{
+" let g:coc_global_extensions = [
+"       \ 'coc-elixir', 'coc-eslint', 'coc-prettier',
+"       \ 'coc-tsserver', 'coc-tslint', 'coc-tslint-plugin',
+"       \ 'coc-css', 'coc-json', 'coc-yaml'
+"       \]
+" set updatetime=300
+" }}}
+" vars {{{
+set clipboard+=unnamedplus
+set fdm=marker
+set bg=dark
 set shiftwidth=2
-set softtabstop=2
-set tabstop=2
-
-" theme
+set sts=2
+set ts=2
+set laststatus=1
+set so=3
+set magic
+set et
+set sta
+set tgc
+set rnu
+set cul
+set ai
+set si
+set nu
+set undofile
+set ignorecase
+set guicursor=a:blinkon1
+" }}}
+" fzf {{{
+let $FZF_DEFAULT_COMMAND = 'fd --type f'
+" let $FZF_DEFAULT_COMMAND = 'ag --hidden -g ""'
+" let $FZF_DEFAULT_OPTS .= '--inline-info'
+" bugfix maybe fixed
+" let g:fzf_layout = { 'window': 'enew' }
+let g:fzf_buffers_jump = 1
+" }}}
+" foldtext {{{
+function! CustomFoldtext()
+  " remove comments
+  let line = substitute(getline(v:foldstart),
+        \'\v\s*(' . substitute(&cms, '\s*%s', '', '') . '+)\s*', '', 'g')
+  " remove marker
+  let line = substitute(line, '\s*' . split(&foldmarker, ',')[0] . '\s*', '', 'g')
+  let line = repeat(v:folddashes, 2) . ' ' . line
+  let w = get(g:, 'custom_foldtext_max_width', winwidth(0)) - &foldcolumn - (&number ? 4 : 0)
+  let foldSize = 1 + v:foldend - v:foldstart
+  let foldSizeStr = " " . foldSize . " lines "
+  let foldLevelStr = repeat(" ", 4)
+  let lineCount = line("$")
+  let expansionString = repeat(' ', w - strwidth(foldSizeStr.line.foldLevelStr))
+  return line . expansionString . foldSizeStr . foldLevelStr
+endf
+set foldtext=CustomFoldtext()
+" }}}
+" colorscheme {{{
 if (has("termguicolors"))
   set termguicolors
 endif
-set background=dark
-color gruvbox
-let g:gruvbox_contrast_dark="hard"
 
-" mappings
-nnoremap <C-n> :NERDTreeToggle<CR>
+set background=dark
+colorscheme palenight
+" }}}
+" keyboard {{{
 nnoremap <C-p> :FZF<CR>
 
-" formatting
-autocmd BufWritePost * StripWhitespace
-
-" deoplete
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#sources={}
-let g:deoplete#sources._=['buffer', 'member', 'tag', 'file', 'omni', 'ultisnips']
-let g:deoplete#omni#input_patterns={}
-let g:deoplete#omni#input_patterns.scala='[^. *\t]\.\w*'
-let g:deoplete#omni#input_patterns.scala = ['[^. *\t]\.\w*', '[:\[,] ?\w*', '^import .*']
 inoremap <expr><tab> pumvisible() ? "<c-n>": "\<tab>"
-
-" vim-jsx
-let g:jsx_ext_required = 0
-" let g:javascript_plugin_flow = 1
-
-" ack / ag
-if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
-endif
-
-" ensime
-autocmd BufWritePost *.scala silent :EnTypeCheck
-au FileType scala nnoremap <localleader>dv :EnDeclarationSplit v<CR>
-au FileType scala nnoremap <localleader>ds :EnDeclarationSplit<CR>
-" let g:ensime_server_v2 = 1
+" nnoremap <silent><S-P> :Ag<CR>
+" }}}
+" whitespace {{{
+let g:strip_whitespace_on_save=1
+let g:strip_whitespace_confirm=0
+" }}}
+" elixir {{{
+let g:mix_format_on_save = 1
+" }}}
