@@ -11,16 +11,11 @@ Plug 'tpope/vim-vinegar'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'Brettm12345/moonlight.vim'
-
-" Plug 'neoclide/coc.nvim', { 'tag': '*', 'do': { -> coc#util#install() } }
+Plug 'ayu-theme/ayu-vim'
+Plug 'neovim/nvim-lspconfig'
+Plug 'williamboman/nvim-lsp-installer'
 
 " elixir
-Plug 'elixir-editors/vim-elixir'
-Plug 'JakeBecker/elixir-ls', { 'do': { -> g:elixirls.compile() } }
-Plug 'mhinz/vim-mix-format'
-
-" pug
-Plug 'digitaltoad/vim-pug'
 
 " javascript
 Plug 'pangloss/vim-javascript', {'for': ['javascript', 'javascript.jsx']}
@@ -29,15 +24,10 @@ Plug 'maxmellon/vim-jsx-pretty', {'for': ['javascript', 'javascript.jsx']}
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 
+Plug 'williamboman/mason.nvim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
 call plug#end()
-" }}}
-" coc {{{
-" let g:coc_global_extensions = [
-"       \ 'coc-elixir', 'coc-eslint', 'coc-prettier',
-"       \ 'coc-tsserver', 'coc-tslint', 'coc-tslint-plugin',
-"       \ 'coc-css', 'coc-json', 'coc-yaml'
-"       \]
-" set updatetime=300
 " }}}
 " vars {{{
 set clipboard+=unnamedplus
@@ -105,6 +95,4 @@ inoremap <expr><tab> pumvisible() ? "<c-n>": "\<tab>"
 let g:strip_whitespace_on_save=1
 let g:strip_whitespace_confirm=0
 " }}}
-" elixir {{{
-let g:mix_format_on_save = 1
-" }}}
+
