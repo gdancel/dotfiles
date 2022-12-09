@@ -1,15 +1,15 @@
 {
-    "border": "none",
+    "border": "normal",
     "current_border_width": 0,
     "floating": "auto_off",
     "geometry": {
-       "height": 464,
-       "width": 672,
+       "height": 856,
+       "width": 1264,
        "x": 0,
        "y": 0
     },
-    "name": "g@archlinux: ~",
-    "percent": 0.7,
+    "name": "/home/g",
+    "percent": 0.776041666666667,
     "swallows": [
        {
            "class": "^URxvt$"
@@ -17,26 +17,25 @@
     ],
     "type": "con"
 }
-
 {
-    "border": "none",
+    "border": "normal",
     "floating": "auto_off",
     "layout": "splitv",
-    "percent": 0.3,
+    "percent": 0.223958333333333,
     "type": "con",
     "nodes": [
         {
-            "border": "none",
+            "border": "normal",
             "current_border_width": 0,
             "floating": "auto_off",
             "geometry": {
-               "height": 464,
-               "width": 672,
+               "height": 856,
+               "width": 1264,
                "x": 0,
                "y": 0
             },
-            "name": "g@archlinux: ~",
-            "percent": 0.5,
+            "name": "/home/g",
+            "percent": 0.759541984732821,
             "swallows": [
                {
                    "class": "^URxvt$"
@@ -45,17 +44,17 @@
             "type": "con"
         },
         {
-            "border": "none",
+            "border": "normal",
             "current_border_width": 0,
             "floating": "auto_off",
             "geometry": {
-               "height": 464,
-               "width": 672,
+               "height": 856,
+               "width": 1264,
                "x": 0,
                "y": 0
             },
-            "name": "g@archlinux: ~",
-            "percent": 0.5,
+            "name": "/home/g",
+            "percent": 0.240458015267175,
             "swallows": [
                {
                    "class": "^URxvt$"
@@ -65,4 +64,3 @@
         }
     ]
 }
-
