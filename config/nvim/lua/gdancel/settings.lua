@@ -1,5 +1,6 @@
 local g = vim.g
 local o = vim.o
+local opt = vim.opt
 
 o.termguicolors = true
 o.bg = 'dark'
@@ -29,3 +30,5 @@ o.swapfile = false
 o.clipboard = 'unnamedplus'
 
 o.ignorecase = true
+
+vim.opt.mouse = ""
