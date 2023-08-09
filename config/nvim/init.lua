@@ -8,6 +8,7 @@ require("gdancel/plugins/treesitter")
 require("gdancel/plugins/gitsigns")
 
 require("gdancel/plugins/mini")
+require("gdancel/plugins/elixir")
 
 require("gdancel/plugins/lsp/mason")
 require("gdancel/plugins/lsp/lspsaga")

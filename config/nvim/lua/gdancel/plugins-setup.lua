@@ -71,8 +71,8 @@ require('packer').startup(function(use)
   use { 'catppuccin/nvim', as = 'catppuccin' }
 
   -- elixir
-  use {'mhanberg/elixir.nvim'}
-  use {'brendalf/mix.nvim'}
+  use { 'elixir-tools/elixir-tools.nvim', requires = { 'nvim-lua/plenary.nvim' }}
+  -- use {'brendalf/mix.nvim'}
 
   -- surround
   use {'tpope/vim-surround'}
@@ -87,5 +87,3 @@ require('packer').startup(function(use)
   -- trailing whitepsace
   use 'echasnovski/mini.trailspace'
 end)
-
-require('elixir').setup()

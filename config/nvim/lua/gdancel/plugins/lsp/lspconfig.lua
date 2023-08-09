@@ -49,7 +49,7 @@ lspconfig['tailwindcss'].setup({
   on_attach = on_attach
 })
 
-require('elixir').setup({
-  on_attach = on_attach,
-  capabilities = capabilities
-})
+-- require('elixir').setup({
+--   on_attach = on_attach,
+--   capabilities = capabilities
+-- })
